@@ -37,10 +37,23 @@ $bookings = mysqli_query(
             <td><?= $row['appointment_date']; ?></td>
             <td><?= $row['appointment_time']; ?></td>
             <td><?= ucfirst($row['status']); ?></td>
+
+            <td>
+                <?php if ($row['status'] == 'pending') { ?>
+                    <a href="cancel.php?id=<?= $row['id']; ?>"
+                        onclick="return confirm('Are you sure you want to cancel this booking?');">
+                        Cancel
+                    </a>
+                <?php } else { ?>
+                    N/A
+                <?php } ?>
+            </td>
         </tr>
     <?php } ?>
 </table>
 
 <p><a href="book.php">Book an Appointment</a></p>
+
+
 
 <a href="logout.php">Logout</a>
