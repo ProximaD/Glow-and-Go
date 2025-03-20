@@ -1,7 +1,7 @@
 <?php
 $servername = "localhost";
-$username = "root"; // Change if using a different username
-$password = ""; // Change if using a password
+$username = "root";
+$password = "";
 $database = "salon_booking";
 
 // Create connection
