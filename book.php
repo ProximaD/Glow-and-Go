@@ -7,13 +7,13 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
-// Fetch available services
+
 $services = mysqli_query($conn, "SELECT * FROM services");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $user_id = $_SESSION['user_id'];
 
-    // Check if service_id is set
+
     if (!isset($_POST['service_id']) || empty($_POST['service_id'])) {
         die("Error: Service ID is missing.");
     }
@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $date = $_POST['date'];
     $time = $_POST['time'];
 
-    // Validate if service_id exists in the database
+
     $stmt = $conn->prepare("SELECT id FROM services WHERE id = ?");
     $stmt->bind_param("i", $service_id);
     $stmt->execute();
@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("Error: Invalid service ID.");
     }
 
-    // Insert into bookings
+
     $sql = "INSERT INTO bookings (user_id, service_id, appointment_date, appointment_time) 
             VALUES ('$user_id', '$service_id', '$date', '$time')";
 
