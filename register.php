@@ -1,16 +1,16 @@
 <?php
-include 'config.php'; // Database connection
+include 'config.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = trim($_POST['name']);
     $email = trim($_POST['email']);
     $password = trim($_POST['password']);
 
-    // Validate inputs
+
     if (empty($name) || empty($email) || empty($password)) {
         $error = "All fields are required!";
     } else {
-        // Check if email already exists
+
         $check_email = "SELECT id FROM users WHERE email = ?";
         $stmt = mysqli_prepare($conn, $check_email);
         mysqli_stmt_bind_param($stmt, "s", $email);
