@@ -1,13 +1,13 @@
 <?php
 session_start();
-require 'config.php'; // Ensure database connection is correct
+require 'config.php';
 
-// Check if user is logged in
+
 if (!isset($_SESSION['user_id'])) {
     die("Unauthorized access. Please log in.");
 }
 
-// Fetch user data
+
 $user_id = $_SESSION['user_id'];
 $query = "SELECT * FROM users WHERE id = ?";
 $stmt = $conn->prepare($query);
@@ -16,8 +16,8 @@ $stmt->execute();
 $result = $stmt->get_result();
 $user = $result->fetch_assoc();
 
-// Ensure user data exists
-$full_name = $user['full_name'] ?? ''; // Avoids undefined array key error
+
+$full_name = $user['full_name'] ?? '';
 $email = $user['email'] ?? '';
 ?>
 
